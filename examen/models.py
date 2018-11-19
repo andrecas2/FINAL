@@ -1,5 +1,16 @@
 from django.db import models
+
+# Create your models here.
 from django.contrib import admin
+# Create your models here.
+
+class Profesor(models.Model):
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    edad = models.IntegerField()
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s %s" % (self.nombre, self.apellido)
 
 class Materia(models.Model):
     nombre  =   models.CharField(max_length=30)
@@ -32,3 +43,25 @@ class MateriaAdmin(admin.ModelAdmin):
 
 class EstudianteAdmin (admin.ModelAdmin):
     inlines = (AsignacionInLine,)
+
+class Grado(models.Model):
+    nombre = models.CharField(max_length=60)
+    descripcion = models.IntegerField()
+    materias   = models.ManyToManyField(Materia, through='Seccion')
+    def __str__(self):
+        return self.nombre
+
+class Seccion (models.Model):
+    materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
+    grado = models.ForeignKey(Grado, on_delete=models.CASCADE)
+    nota = models.CharField(max_length=60)
+
+class SeccionInLine(admin.TabularInline):
+    model = Seccion
+    extra = 1
+
+class MateriaAdmin(admin.ModelAdmin):
+    inlines = (SeccionInLine,)
+
+class GradoAdmin (admin.ModelAdmin):
+inlines = (SeccionInLine,)

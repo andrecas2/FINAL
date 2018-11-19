@@ -28,4 +28,4 @@ def estudiante_nuevo(request):
             messages.add_message(request, messages.SUCCESS, 'estudiante Guardada Exitosamente')
     else:
         formulario = EstudianteForm()
-return render(request, 'grado/estudiante_nuevo.html', {'formulario': formulario})
+    return render(request, 'grado/estudiante_nuevo.html', {'formulario': formulario})

@@ -64,4 +64,4 @@ class MateriaAdmin(admin.ModelAdmin):
     inlines = (SeccionInLine,)
 
 class GradoAdmin (admin.ModelAdmin):
-inlines = (SeccionInLine,)
+    inlines = (SeccionInLine,)

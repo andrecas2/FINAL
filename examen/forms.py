@@ -34,4 +34,4 @@ class MateriaForm(forms.ModelForm):
 class ProfesorForm(forms.ModelForm):
     class Meta:
         model = Profesor
-fields = ('nombre', 'apellido','edad',)
+        fields = ('nombre', 'apellido','edad',)
